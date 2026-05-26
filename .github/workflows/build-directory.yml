@@ -1,0 +1,50 @@
+name: Build directory
+
+# Keeps directory.json in sync with the agents/*/agent.md manifests.
+# - On PRs: builds + fails if the committed directory.json is stale,
+#   so contributors regenerate before merge.
+# - On push to main: rebuilds + commits directory.json if it changed,
+#   so the raw-GitHub URL the Reload app fetches is always current.
+
+on:
+  push:
+    branches: [main]
+    paths: ['agents/**', 'scripts/**', 'package.json']
+  pull_request:
+    paths: ['agents/**', 'scripts/**', 'package.json']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+
+      # PR: fail if the committed artifact is out of date with the manifests.
+      - name: Verify directory.json is up to date (PRs)
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet -- directory.json; then
+            echo "::error::directory.json is stale. Run 'npm run build' and commit the result."
+            git diff -- directory.json
+            exit 1
+          fi
+
+      # main: commit the freshly built artifact if it changed.
+      - name: Commit refreshed directory.json (main)
+        if: github.event_name == 'push'
+        run: |
+          if ! git diff --quiet -- directory.json; then
+            git config user.name "reload-directory-bot"
+            git config user.email "bot@reload.chat"
+            git add directory.json
+            git commit -m "chore: rebuild directory.json [skip ci]"
+            git push
+          fi

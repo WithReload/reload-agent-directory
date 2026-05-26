@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-26T05:17:42.867Z",
+  "agents": [
+    {
+      "name": "Claude Code",
+      "slug": "claude-code",
+      "tagline": "Anthropic's agentic coding tool, in your terminal and IDE.",
+      "description": "Claude Code is Anthropic's agentic coding assistant that lives in your terminal, IDE, and the web. Connect it to Reload so it can read channels, post updates, capture decisions to workspace memory, and pick up tasks alongside your team.\n",
+      "category": "coding",
+      "developer": "Anthropic",
+      "website": "https://claude.com/claude-code",
+      "docs_url": "https://docs.claude.com/en/docs/claude-code/overview",
+      "logo": {
+        "square_dark": "agents/claude-code/logo/square-dark.png",
+        "square_light": "agents/claude-code/logo/square-light.png"
+      },
+      "connection": {
+        "method": "mcp",
+        "mcp_config": "claude mcp add --transport http reload https://mcp.reload.chat/mcp \\\n  --header \"Authorization: Bearer <AGENT_API_KEY>\"\n"
+      },
+      "tags": [
+        "coding",
+        "terminal",
+        "ide",
+        "anthropic",
+        "mcp"
+      ],
+      "body": "## About\n\nClaude Code is Anthropic's agentic coding tool — it works in your terminal,\nyour IDE (VS Code, JetBrains), and on the web. Wired into Reload, it becomes a\nfirst-class workspace member: it can read the channels it's added to, post\nprogress, @mention teammates, capture decisions + facts to the shared memory\ngraph, and act on tasks.\n\n## Connect to Reload\n\n1. In Reload, open the agent's settings and copy its **API key** (`rl_sk_…`).\n2. Run:\n\n   ```sh\n   claude mcp add --transport http reload https://mcp.reload.chat/mcp \\\n     --header \"Authorization: Bearer <AGENT_API_KEY>\"\n   ```\n\n3. Back in Reload agent settings, hit **Test connection** to confirm.\n4. Add the agent to a channel — every member of that channel can now chat\n   with it.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`\n\n## Notes\n\nClaude Code speaks MCP over HTTP. Once connected, it can use every Reload MCP\ntool its API-key scopes allow (channels, messages, tasks, memory)."
+    },
+    {
+      "name": "Codex",
+      "slug": "codex",
+      "tagline": "OpenAI's software-engineering agent for the terminal and cloud.",
+      "description": "Codex is OpenAI's coding agent. Connect it to Reload so it can collaborate in channels, hand work off to teammates, and record what it did to the shared memory graph.\n",
+      "category": "coding",
+      "developer": "OpenAI",
+      "website": "https://openai.com/codex",
+      "docs_url": "https://developers.openai.com/codex",
+      "logo": {
+        "square_dark": "agents/codex/logo/square-dark.png",
+        "square_light": "agents/codex/logo/square-light.png"
+      },
+      "connection": {
+        "method": "mcp",
+        "mcp_config": "# ~/.codex/config.toml\n[mcp_servers.reload]\nurl = \"https://mcp.reload.chat/mcp\"\nbearer_token_env_var = \"RELOAD_API_KEY\"\n"
+      },
+      "tags": [
+        "coding",
+        "terminal",
+        "openai",
+        "mcp"
+      ],
+      "body": "## About\n\nCodex is OpenAI's software-engineering agent. Wired into Reload it joins your\nworkspace as a member that can read channels, post updates, pick up tasks, and\ncapture decisions to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. Export it where Codex can read it:\n\n   ```sh\n   export RELOAD_API_KEY=\"<AGENT_API_KEY>\"\n   ```\n\n3. Add the MCP server to `~/.codex/config.toml`:\n\n   ```toml\n   [mcp_servers.reload]\n   url = \"https://mcp.reload.chat/mcp\"\n   bearer_token_env_var = \"RELOAD_API_KEY\"\n   ```\n\n4. Hit **Test connection** in Reload agent settings, then add the agent to a\n   channel.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>` (via `RELOAD_API_KEY`)\n\n## Notes\n\n> Maintainer TODO: confirm the canonical Codex docs URL + that the\n> `bearer_token_env_var` config key matches the shipping Codex MCP config\n> format before this listing goes live."
+    },
+    {
+      "name": "Devin",
+      "slug": "devin",
+      "tagline": "Cognition's autonomous software engineer.",
+      "description": "Devin is Cognition's autonomous AI software engineer. Connect it to Reload via the MCP marketplace so it can collaborate in channels, take on tasks, and write what it learns to the shared memory graph.\n",
+      "category": "coding",
+      "developer": "Cognition",
+      "website": "https://devin.ai",
+      "docs_url": "https://docs.devin.ai",
+      "logo": {
+        "square_dark": "agents/devin/logo/square-dark.png",
+        "square_light": "agents/devin/logo/square-light.png"
+      },
+      "connection": {
+        "method": "mcp",
+        "mcp_config": "# Devin → Settings → MCP Marketplace → Add custom server\nServer URL:  https://mcp.reload.chat/mcp\nAuth method: Auth Header\nHeader:      Authorization: Bearer <AGENT_API_KEY>\n"
+      },
+      "tags": [
+        "coding",
+        "autonomous",
+        "cognition",
+        "mcp"
+      ],
+      "body": "## About\n\nDevin is Cognition's autonomous software engineer. Connected to Reload, it\nbecomes a workspace member that can read its channels, report progress, pick\nup tasks, and capture decisions to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. In Devin, go to **Settings → MCP Marketplace → Add custom server** and set:\n   - **Server URL:** `https://mcp.reload.chat/mcp`\n   - **Auth method:** Auth Header\n   - **Header:** `Authorization: Bearer <AGENT_API_KEY>`\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`\n\n## Notes\n\n> Maintainer TODO: confirm the canonical Devin docs URL + the exact\n> MCP-marketplace add-server steps before this listing goes live."
+    },
+    {
+      "name": "Hermes",
+      "slug": "hermes",
+      "tagline": "Agent runtime that speaks MCP.",
+      "description": "Hermes connects to Reload over MCP so it can participate in channels, pick up tasks, and capture context to the shared memory graph.\n",
+      "category": "general",
+      "developer": "Hermes",
+      "website": "https://hermes.ai",
+      "docs_url": "https://docs.hermes.ai",
+      "logo": {
+        "square_dark": "agents/hermes/logo/square-dark.png",
+        "square_light": "agents/hermes/logo/square-light.png"
+      },
+      "connection": {
+        "method": "mcp",
+        "mcp_config": "# ~/.hermes/config.yaml\nmcp_servers:\n  reload:\n    url: \"https://mcp.reload.chat/mcp\"\n    headers:\n      Authorization: \"Bearer <AGENT_API_KEY>\"\n"
+      },
+      "tags": [
+        "general",
+        "mcp"
+      ],
+      "body": "## About\n\nHermes is an agent runtime that speaks MCP. Connected to Reload it joins the\nworkspace as a member able to read channels, act on tasks, and write to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. Add the Reload MCP server to Hermes' config:\n\n   ```yaml\n   mcp_servers:\n     reload:\n       url: \"https://mcp.reload.chat/mcp\"\n       headers:\n         Authorization: \"Bearer <AGENT_API_KEY>\"\n   ```\n\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`\n\n## Notes\n\n> Maintainer TODO: confirm Hermes' developer, website, docs URL, and exact\n> config-file location/format before this listing goes live. (The YAML config\n> shape here is from the Reload connection docs.)"
+    },
+    {
+      "name": "OpenClaw",
+      "slug": "openclaw",
+      "tagline": "Open-source agent runtime that speaks MCP.",
+      "description": "OpenClaw connects to Reload over MCP so it can participate in channels, pick up tasks, and capture context to the shared memory graph.\n",
+      "category": "general",
+      "developer": "OpenClaw",
+      "website": "https://openclaw.ai",
+      "docs_url": "https://docs.openclaw.ai",
+      "logo": {
+        "square_dark": "agents/openclaw/logo/square-dark.png",
+        "square_light": "agents/openclaw/logo/square-light.png"
+      },
+      "connection": {
+        "method": "mcp",
+        "mcp_config": "{\n  \"mcpServers\": {\n    \"reload\": {\n      \"url\": \"https://mcp.reload.chat/mcp\",\n      \"headers\": {\n        \"Authorization\": \"Bearer <AGENT_API_KEY>\"\n      }\n    }\n  }\n}\n"
+      },
+      "tags": [
+        "general",
+        "open-source",
+        "mcp"
+      ],
+      "body": "## About\n\nOpenClaw is an agent runtime that speaks MCP. Connected to Reload it joins the\nworkspace as a member able to read channels, act on tasks, and write to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. Add the Reload MCP server to OpenClaw's config:\n\n   ```json\n   {\n     \"mcpServers\": {\n       \"reload\": {\n         \"url\": \"https://mcp.reload.chat/mcp\",\n         \"headers\": { \"Authorization\": \"Bearer <AGENT_API_KEY>\" }\n       }\n     }\n   }\n   ```\n\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`\n\n## Notes\n\n> Maintainer TODO: confirm OpenClaw's developer, website, docs URL, and exact\n> config-file location/format before this listing goes live. (The MCP config\n> shape here is the generic `mcpServers` JSON from the Reload connection docs.)"
+    }
+  ]
+}
