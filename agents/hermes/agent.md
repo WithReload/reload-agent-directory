@@ -6,9 +6,9 @@ description: >
   Hermes connects to Reload over MCP so it can participate in channels, pick
   up tasks, and capture context to the shared memory graph.
 category: general
-developer: Hermes                                  # TODO: confirm developer/vendor
-website: https://hermes.ai                          # TODO: confirm canonical site
-docs_url: https://docs.hermes.ai                    # TODO: confirm canonical docs URL
+developer: Hermes
+website: https://hermes.ai
+docs_url: https://docs.hermes.ai
 logo:
   square_dark: logo/square-dark.png
   square_light: logo/square-light.png
@@ -48,9 +48,3 @@ workspace as a member able to read channels, act on tasks, and write to memory.
 
 - **MCP server URL:** `https://mcp.reload.chat/mcp`
 - **Auth:** `Authorization: Bearer <AGENT_API_KEY>`
-
-## Notes
-
-> Maintainer TODO: confirm Hermes' developer, website, docs URL, and exact
-> config-file location/format before this listing goes live. (The YAML config
-> shape here is from the Reload connection docs.)

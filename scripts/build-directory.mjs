@@ -44,6 +44,14 @@ function build() {
 
     const { data, content } = matter(readFileSync(mdPath, 'utf8'))
 
+    // Optional per-agent connection steps (## Autonomous / ## Manual).
+    // Shown on the Reload reveal page next to the MCP config, with
+    // <AGENT_API_KEY> / <MCP_BASE_URL> interpolated by the client.
+    const stepsPath = join(AGENTS_DIR, slug, 'connection-steps.md')
+    const connectionSteps = existsSync(stepsPath)
+      ? readFileSync(stepsPath, 'utf8').trim()
+      : null
+
     for (const field of REQUIRED) {
       if (!data[field]) errors.push(`${slug}: missing required field "${field}"`)
     }
@@ -65,6 +73,8 @@ function build() {
       slug,
       // Body markdown rendered on the detail panel.
       body: content.trim(),
+      // Autonomous + Manual connection steps (raw markdown), if present.
+      connectionSteps,
       // Resolve logo paths relative to the agent folder for the CDN mirror.
       logo: data.logo
         ? Object.fromEntries(

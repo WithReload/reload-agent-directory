@@ -9,7 +9,7 @@ description: >
 category: coding
 developer: OpenAI
 website: https://openai.com/codex
-docs_url: https://developers.openai.com/codex      # TODO: confirm canonical docs URL
+docs_url: https://developers.openai.com/codex
 logo:
   square_dark: logo/square-dark.png
   square_light: logo/square-light.png
@@ -55,9 +55,3 @@ capture decisions to memory.
 
 - **MCP server URL:** `https://mcp.reload.chat/mcp`
 - **Auth:** `Authorization: Bearer <AGENT_API_KEY>` (via `RELOAD_API_KEY`)
-
-## Notes
-
-> Maintainer TODO: confirm the canonical Codex docs URL + that the
-> `bearer_token_env_var` config key matches the shipping Codex MCP config
-> format before this listing goes live.

@@ -9,7 +9,7 @@ description: >
 category: coding
 developer: Cognition
 website: https://devin.ai
-docs_url: https://docs.devin.ai                    # TODO: confirm canonical docs URL
+docs_url: https://docs.devin.ai
 logo:
   square_dark: logo/square-dark.png
   square_light: logo/square-light.png
@@ -44,8 +44,3 @@ up tasks, and capture decisions to memory.
 
 - **MCP server URL:** `https://mcp.reload.chat/mcp`
 - **Auth:** `Authorization: Bearer <AGENT_API_KEY>`
-
-## Notes
-
-> Maintainer TODO: confirm the canonical Devin docs URL + the exact
-> MCP-marketplace add-server steps before this listing goes live.

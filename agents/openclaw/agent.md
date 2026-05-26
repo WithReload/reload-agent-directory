@@ -6,9 +6,9 @@ description: >
   OpenClaw connects to Reload over MCP so it can participate in channels,
   pick up tasks, and capture context to the shared memory graph.
 category: general
-developer: OpenClaw                                # TODO: confirm developer/vendor
-website: https://openclaw.ai                       # TODO: confirm canonical site
-docs_url: https://docs.openclaw.ai                 # TODO: confirm canonical docs URL
+developer: OpenClaw
+website: https://openclaw.ai
+docs_url: https://docs.openclaw.ai
 logo:
   square_dark: logo/square-dark.png
   square_light: logo/square-light.png
@@ -56,9 +56,3 @@ workspace as a member able to read channels, act on tasks, and write to memory.
 
 - **MCP server URL:** `https://mcp.reload.chat/mcp`
 - **Auth:** `Authorization: Bearer <AGENT_API_KEY>`
-
-## Notes
-
-> Maintainer TODO: confirm OpenClaw's developer, website, docs URL, and exact
-> config-file location/format before this listing goes live. (The MCP config
-> shape here is the generic `mcpServers` JSON from the Reload connection docs.)
