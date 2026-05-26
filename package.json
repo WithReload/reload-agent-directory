@@ -1,0 +1,14 @@
+{
+  "name": "reload-agent-directory",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Public, community-contributed directory of AI agents you can connect to Reload.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-directory.mjs"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "license": "MIT"
+}
