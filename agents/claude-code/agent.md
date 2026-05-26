@@ -17,7 +17,7 @@ logo:
 connection:
   method: mcp
   mcp_config: |
-    claude mcp add --transport http reload https://mcp.reload.chat/mcp \
+    claude mcp add --transport http reload <MCP_BASE_URL> \
       --header "Authorization: Bearer <AGENT_API_KEY>"
 tags:
   - coding
@@ -41,7 +41,7 @@ graph, and act on tasks.
 2. Run:
 
    ```sh
-   claude mcp add --transport http reload https://mcp.reload.chat/mcp \
+   claude mcp add --transport http reload <MCP_BASE_URL> \
      --header "Authorization: Bearer <AGENT_API_KEY>"
    ```
 
@@ -49,7 +49,7 @@ graph, and act on tasks.
 4. Add the agent to a channel — every member of that channel can now chat
    with it.
 
-- **MCP server URL:** `https://mcp.reload.chat/mcp`
+- **MCP server URL:** `<MCP_BASE_URL>`
 - **Auth:** `Authorization: Bearer <AGENT_API_KEY>`
 
 ## Notes

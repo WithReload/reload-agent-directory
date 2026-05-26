@@ -75,11 +75,21 @@ function build() {
       body: content.trim(),
       // Autonomous + Manual connection steps (raw markdown), if present.
       connectionSteps,
-      // Resolve logo paths relative to the agent folder for the CDN mirror.
+      // Resolve logo paths relative to the agent folder — but ONLY for
+      // files that actually exist in the repo. A manifest may declare
+      // `logo/square-dark.png` before the owner has committed the real
+      // asset (placeholder folders ship a PLACEHOLDER.md instead); we
+      // omit those so the client renders a monogram rather than firing
+      // a 404 against a non-existent image.
       logo: data.logo
-        ? Object.fromEntries(
-            Object.entries(data.logo).map(([k, v]) => [k, `agents/${slug}/${v}`]),
-          )
+        ? (() => {
+            const resolved = Object.fromEntries(
+              Object.entries(data.logo)
+                .filter(([, v]) => existsSync(join(AGENTS_DIR, slug, v)))
+                .map(([k, v]) => [k, `agents/${slug}/${v}`]),
+            )
+            return Object.keys(resolved).length > 0 ? resolved : undefined
+          })()
         : undefined,
     })
   }

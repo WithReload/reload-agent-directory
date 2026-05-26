@@ -16,9 +16,12 @@ logo:
 connection:
   method: mcp
   mcp_config: |
-    # ~/.codex/config.toml
+    # 1. Export your Reload agent key:
+    export RELOAD_API_KEY="<AGENT_API_KEY>"
+
+    # 2. Add the server to ~/.codex/config.toml:
     [mcp_servers.reload]
-    url = "https://mcp.reload.chat/mcp"
+    url = "<MCP_BASE_URL>"
     bearer_token_env_var = "RELOAD_API_KEY"
 tags:
   - coding

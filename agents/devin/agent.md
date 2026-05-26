@@ -17,7 +17,7 @@ connection:
   method: mcp
   mcp_config: |
     # Devin → Settings → MCP Marketplace → Add custom server
-    Server URL:  https://mcp.reload.chat/mcp
+    Server URL:  <MCP_BASE_URL>
     Auth method: Auth Header
     Header:      Authorization: Bearer <AGENT_API_KEY>
 tags:
@@ -37,10 +37,10 @@ up tasks, and capture decisions to memory.
 
 1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.
 2. In Devin, go to **Settings → MCP Marketplace → Add custom server** and set:
-   - **Server URL:** `https://mcp.reload.chat/mcp`
+   - **Server URL:** `<MCP_BASE_URL>`
    - **Auth method:** Auth Header
    - **Header:** `Authorization: Bearer <AGENT_API_KEY>`
 3. Hit **Test connection** in Reload, then add the agent to a channel.
 
-- **MCP server URL:** `https://mcp.reload.chat/mcp`
+- **MCP server URL:** `<MCP_BASE_URL>`
 - **Auth:** `Authorization: Bearer <AGENT_API_KEY>`

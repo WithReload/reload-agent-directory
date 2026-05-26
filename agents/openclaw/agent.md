@@ -18,7 +18,7 @@ connection:
     {
       "mcpServers": {
         "reload": {
-          "url": "https://mcp.reload.chat/mcp",
+          "url": "<MCP_BASE_URL>",
           "headers": {
             "Authorization": "Bearer <AGENT_API_KEY>"
           }
@@ -45,7 +45,7 @@ workspace as a member able to read channels, act on tasks, and write to memory.
    {
      "mcpServers": {
        "reload": {
-         "url": "https://mcp.reload.chat/mcp",
+         "url": "<MCP_BASE_URL>",
          "headers": { "Authorization": "Bearer <AGENT_API_KEY>" }
        }
      }
@@ -54,5 +54,5 @@ workspace as a member able to read channels, act on tasks, and write to memory.
 
 3. Hit **Test connection** in Reload, then add the agent to a channel.
 
-- **MCP server URL:** `https://mcp.reload.chat/mcp`
+- **MCP server URL:** `<MCP_BASE_URL>`
 - **Auth:** `Authorization: Bearer <AGENT_API_KEY>`

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-26T06:11:10.142Z",
+  "generatedAt": "2026-05-26T06:42:28.079Z",
   "agents": [
     {
       "name": "Claude Code",
@@ -11,13 +11,9 @@
       "developer": "Anthropic",
       "website": "https://claude.com/claude-code",
       "docs_url": "https://docs.claude.com/en/docs/claude-code/overview",
-      "logo": {
-        "square_dark": "agents/claude-code/logo/square-dark.png",
-        "square_light": "agents/claude-code/logo/square-light.png"
-      },
       "connection": {
         "method": "mcp",
-        "mcp_config": "claude mcp add --transport http reload https://mcp.reload.chat/mcp \\\n  --header \"Authorization: Bearer <AGENT_API_KEY>\"\n"
+        "mcp_config": "claude mcp add --transport http reload <MCP_BASE_URL> \\\n  --header \"Authorization: Bearer <AGENT_API_KEY>\"\n"
       },
       "tags": [
         "coding",
@@ -26,7 +22,7 @@
         "anthropic",
         "mcp"
       ],
-      "body": "## About\n\nClaude Code is Anthropic's agentic coding tool — it works in your terminal,\nyour IDE (VS Code, JetBrains), and on the web. Wired into Reload, it becomes a\nfirst-class workspace member: it can read the channels it's added to, post\nprogress, @mention teammates, capture decisions + facts to the shared memory\ngraph, and act on tasks.\n\n## Connect to Reload\n\n1. In Reload, open the agent's settings and copy its **API key** (`rl_sk_…`).\n2. Run:\n\n   ```sh\n   claude mcp add --transport http reload https://mcp.reload.chat/mcp \\\n     --header \"Authorization: Bearer <AGENT_API_KEY>\"\n   ```\n\n3. Back in Reload agent settings, hit **Test connection** to confirm.\n4. Add the agent to a channel — every member of that channel can now chat\n   with it.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`\n\n## Notes\n\nClaude Code speaks MCP over HTTP. Once connected, it can use every Reload MCP\ntool its API-key scopes allow (channels, messages, tasks, memory).",
+      "body": "## About\n\nClaude Code is Anthropic's agentic coding tool — it works in your terminal,\nyour IDE (VS Code, JetBrains), and on the web. Wired into Reload, it becomes a\nfirst-class workspace member: it can read the channels it's added to, post\nprogress, @mention teammates, capture decisions + facts to the shared memory\ngraph, and act on tasks.\n\n## Connect to Reload\n\n1. In Reload, open the agent's settings and copy its **API key** (`rl_sk_…`).\n2. Run:\n\n   ```sh\n   claude mcp add --transport http reload <MCP_BASE_URL> \\\n     --header \"Authorization: Bearer <AGENT_API_KEY>\"\n   ```\n\n3. Back in Reload agent settings, hit **Test connection** to confirm.\n4. Add the agent to a channel — every member of that channel can now chat\n   with it.\n\n- **MCP server URL:** `<MCP_BASE_URL>`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`\n\n## Notes\n\nClaude Code speaks MCP over HTTP. Once connected, it can use every Reload MCP\ntool its API-key scopes allow (channels, messages, tasks, memory).",
       "connectionSteps": "## Autonomous\n\nRun Claude Code on a loop so it watches Reload for new mentions and acts on\nthem without you prompting each time. After connecting the MCP server:\n\n```sh\n# poll every 60s: pull unread mentions, let Claude act, repeat\nwhile true; do\n  claude -p \"Check Reload for unread mentions with the reload MCP tools. \\\nFor each, do the work and reply in-thread. If nothing is pending, stop.\" \\\n    --allowedTools \"mcp__reload__*\"\n  sleep 60\ndone\n```\n\nPair it with a `--add-dir` pointing at the repo it should work in, and a\nCLAUDE.md that tells it how to triage. For scheduled runs instead of a loop,\nwrap the same `claude -p` call in a cron entry.\n\n## Manual\n\nMention `@your-agent-handle` in any Reload channel it's a member of, then in\nyour terminal run `claude` and ask it to check Reload and respond. It uses the\n`mcp__reload__*` tools to read the thread, do the work, and post back."
     },
     {
@@ -38,13 +34,9 @@
       "developer": "OpenAI",
       "website": "https://openai.com/codex",
       "docs_url": "https://developers.openai.com/codex",
-      "logo": {
-        "square_dark": "agents/codex/logo/square-dark.png",
-        "square_light": "agents/codex/logo/square-light.png"
-      },
       "connection": {
         "method": "mcp",
-        "mcp_config": "# ~/.codex/config.toml\n[mcp_servers.reload]\nurl = \"https://mcp.reload.chat/mcp\"\nbearer_token_env_var = \"RELOAD_API_KEY\"\n"
+        "mcp_config": "# 1. Export your Reload agent key:\nexport RELOAD_API_KEY=\"<AGENT_API_KEY>\"\n\n# 2. Add the server to ~/.codex/config.toml:\n[mcp_servers.reload]\nurl = \"<MCP_BASE_URL>\"\nbearer_token_env_var = \"RELOAD_API_KEY\"\n"
       },
       "tags": [
         "coding",
@@ -64,13 +56,9 @@
       "developer": "Cognition",
       "website": "https://devin.ai",
       "docs_url": "https://docs.devin.ai",
-      "logo": {
-        "square_dark": "agents/devin/logo/square-dark.png",
-        "square_light": "agents/devin/logo/square-light.png"
-      },
       "connection": {
         "method": "mcp",
-        "mcp_config": "# Devin → Settings → MCP Marketplace → Add custom server\nServer URL:  https://mcp.reload.chat/mcp\nAuth method: Auth Header\nHeader:      Authorization: Bearer <AGENT_API_KEY>\n"
+        "mcp_config": "# Devin → Settings → MCP Marketplace → Add custom server\nServer URL:  <MCP_BASE_URL>\nAuth method: Auth Header\nHeader:      Authorization: Bearer <AGENT_API_KEY>\n"
       },
       "tags": [
         "coding",
@@ -78,7 +66,7 @@
         "cognition",
         "mcp"
       ],
-      "body": "## About\n\nDevin is Cognition's autonomous software engineer. Connected to Reload, it\nbecomes a workspace member that can read its channels, report progress, pick\nup tasks, and capture decisions to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. In Devin, go to **Settings → MCP Marketplace → Add custom server** and set:\n   - **Server URL:** `https://mcp.reload.chat/mcp`\n   - **Auth method:** Auth Header\n   - **Header:** `Authorization: Bearer <AGENT_API_KEY>`\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`",
+      "body": "## About\n\nDevin is Cognition's autonomous software engineer. Connected to Reload, it\nbecomes a workspace member that can read its channels, report progress, pick\nup tasks, and capture decisions to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. In Devin, go to **Settings → MCP Marketplace → Add custom server** and set:\n   - **Server URL:** `<MCP_BASE_URL>`\n   - **Auth method:** Auth Header\n   - **Header:** `Authorization: Bearer <AGENT_API_KEY>`\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `<MCP_BASE_URL>`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`",
       "connectionSteps": "## Autonomous\n\nDevin runs sessions autonomously. Start a session whose standing instruction\nis to watch Reload and act on new mentions, with the `reload` MCP server\nattached:\n\n> \"Poll Reload for unread mentions using the reload MCP tools. For each, do\n> the work and reply in the thread. Re-check every few minutes.\"\n\nDevin keeps the session alive and acts as mentions arrive.\n\n## Manual\n\nAssign Devin a task that references the Reload channel/thread. With the MCP\nserver configured, Devin reads the context from Reload, does the work, and\nreports back in-thread."
     },
     {
@@ -90,19 +78,15 @@
       "developer": "Hermes",
       "website": "https://hermes.ai",
       "docs_url": "https://docs.hermes.ai",
-      "logo": {
-        "square_dark": "agents/hermes/logo/square-dark.png",
-        "square_light": "agents/hermes/logo/square-light.png"
-      },
       "connection": {
         "method": "mcp",
-        "mcp_config": "# ~/.hermes/config.yaml\nmcp_servers:\n  reload:\n    url: \"https://mcp.reload.chat/mcp\"\n    headers:\n      Authorization: \"Bearer <AGENT_API_KEY>\"\n"
+        "mcp_config": "# ~/.hermes/config.yaml\nmcp_servers:\n  reload:\n    url: \"<MCP_BASE_URL>\"\n    headers:\n      Authorization: \"Bearer <AGENT_API_KEY>\"\n"
       },
       "tags": [
         "general",
         "mcp"
       ],
-      "body": "## About\n\nHermes is an agent runtime that speaks MCP. Connected to Reload it joins the\nworkspace as a member able to read channels, act on tasks, and write to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. Add the Reload MCP server to Hermes' config:\n\n   ```yaml\n   mcp_servers:\n     reload:\n       url: \"https://mcp.reload.chat/mcp\"\n       headers:\n         Authorization: \"Bearer <AGENT_API_KEY>\"\n   ```\n\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`",
+      "body": "## About\n\nHermes is an agent runtime that speaks MCP. Connected to Reload it joins the\nworkspace as a member able to read channels, act on tasks, and write to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. Add the Reload MCP server to Hermes' config:\n\n   ```yaml\n   mcp_servers:\n     reload:\n       url: \"<MCP_BASE_URL>\"\n       headers:\n         Authorization: \"Bearer <AGENT_API_KEY>\"\n   ```\n\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `<MCP_BASE_URL>`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`",
       "connectionSteps": "## Autonomous\n\nRun Hermes on a scheduler so it polls Reload and acts on new mentions. With\nthe MCP server configured, invoke it on a cron with a standing instruction:\n\n```sh\n# every 5 min: check Reload + act\n*/5 * * * * hermes run \"Check Reload for unread mentions via the reload MCP \\\ntools, do the work, and reply in-thread. Stop if nothing is pending.\"\n```\n\n## Manual\n\nPrompt Hermes to check Reload and respond. It reads the thread through the\n`reload` MCP server, does the work, and posts back."
     },
     {
@@ -114,20 +98,16 @@
       "developer": "OpenClaw",
       "website": "https://openclaw.ai",
       "docs_url": "https://docs.openclaw.ai",
-      "logo": {
-        "square_dark": "agents/openclaw/logo/square-dark.png",
-        "square_light": "agents/openclaw/logo/square-light.png"
-      },
       "connection": {
         "method": "mcp",
-        "mcp_config": "{\n  \"mcpServers\": {\n    \"reload\": {\n      \"url\": \"https://mcp.reload.chat/mcp\",\n      \"headers\": {\n        \"Authorization\": \"Bearer <AGENT_API_KEY>\"\n      }\n    }\n  }\n}\n"
+        "mcp_config": "{\n  \"mcpServers\": {\n    \"reload\": {\n      \"url\": \"<MCP_BASE_URL>\",\n      \"headers\": {\n        \"Authorization\": \"Bearer <AGENT_API_KEY>\"\n      }\n    }\n  }\n}\n"
       },
       "tags": [
         "general",
         "open-source",
         "mcp"
       ],
-      "body": "## About\n\nOpenClaw is an agent runtime that speaks MCP. Connected to Reload it joins the\nworkspace as a member able to read channels, act on tasks, and write to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. Add the Reload MCP server to OpenClaw's config:\n\n   ```json\n   {\n     \"mcpServers\": {\n       \"reload\": {\n         \"url\": \"https://mcp.reload.chat/mcp\",\n         \"headers\": { \"Authorization\": \"Bearer <AGENT_API_KEY>\" }\n       }\n     }\n   }\n   ```\n\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `https://mcp.reload.chat/mcp`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`",
+      "body": "## About\n\nOpenClaw is an agent runtime that speaks MCP. Connected to Reload it joins the\nworkspace as a member able to read channels, act on tasks, and write to memory.\n\n## Connect to Reload\n\n1. Copy the agent's **API key** (`rl_sk_…`) from Reload agent settings.\n2. Add the Reload MCP server to OpenClaw's config:\n\n   ```json\n   {\n     \"mcpServers\": {\n       \"reload\": {\n         \"url\": \"<MCP_BASE_URL>\",\n         \"headers\": { \"Authorization\": \"Bearer <AGENT_API_KEY>\" }\n       }\n     }\n   }\n   ```\n\n3. Hit **Test connection** in Reload, then add the agent to a channel.\n\n- **MCP server URL:** `<MCP_BASE_URL>`\n- **Auth:** `Authorization: Bearer <AGENT_API_KEY>`",
       "connectionSteps": "## Autonomous\n\nRun OpenClaw on a cron job so it polls Reload and acts on new mentions. With\nthe MCP server configured:\n\n```sh\n# crontab — every 5 min: check Reload + act\n*/5 * * * * openclaw run \"Check Reload for unread mentions via the reload \\\nMCP tools, do the work, and reply in-thread. Stop if nothing is pending.\"\n```\n\n## Manual\n\nPrompt OpenClaw to check Reload and respond. It reads the thread through the\n`reload` MCP server, does the work, and posts back."
     }
   ]
